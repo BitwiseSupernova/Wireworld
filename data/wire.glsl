@@ -42,6 +42,15 @@ void main( void )
     }
   }
   
+  float sum = 0.0;
+  sum += texture2D(texture, position + pixel * vec2(-1., -1.)).b;
+  sum += texture2D(texture, position + pixel * vec2(-1., 0.)).b;
+  sum += texture2D(texture, position + pixel * vec2(-1., 1.)).b;
+  sum += texture2D(texture, position + pixel * vec2(1., -1.)).b;
+  sum += texture2D(texture, position + pixel * vec2(1., 0.)).b;
+  sum += texture2D(texture, position + pixel * vec2(1., 1.)).b;
+  sum += texture2D(texture, position + pixel * vec2(0., -1.)).b;
+  sum += texture2D(texture, position + pixel * vec2(0., 1.)).b;
   vec4 me = texture2D(texture, position);
   
   if (me.rgb == EH)
@@ -54,16 +63,6 @@ void main( void )
   }
   else if (me.rgb == WIRE)
   {
-    float sum = 0.0;
-    sum += texture2D(texture, position + pixel * vec2(-1., -1.)).b;
-    sum += texture2D(texture, position + pixel * vec2(-1., 0.)).b;
-    sum += texture2D(texture, position + pixel * vec2(-1., 1.)).b;
-    sum += texture2D(texture, position + pixel * vec2(1., -1.)).b;
-    sum += texture2D(texture, position + pixel * vec2(1., 0.)).b;
-    sum += texture2D(texture, position + pixel * vec2(1., 1.)).b;
-    sum += texture2D(texture, position + pixel * vec2(0., -1.)).b;
-    sum += texture2D(texture, position + pixel * vec2(0., 1.)).b;
-    
     // electron head color value contains blue
     // become active if surrounded by 1 or 2 electrons
     if ((sum >= 0.9) && (sum <= 2.1))
